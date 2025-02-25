@@ -1,2 +1,23 @@
 ---
 
+- name: Ensure destination directory exists
+  ansible.builtin.file:
+    path: '{{ project_dir }}'
+    state: directory
+
+- name: copy Files Into Project Dir
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: '{{ project_dir }}'
+  loop:
+    - nginx.conf
+    - docker-compose.yaml
+    - Dockerfile
+    - main.py
+- name: Build Web App Image
+  ansible.builtin.shell:
+    cmd: docker build -t roshan-task:v1 -f {{ project_dir }}/Dockerfile .
+
+- name: Run Web App With Docker Compose
+  ansible.builtin.shell:
+    cmd: docker compose --file {{ project_dir }}/docker-compose.yaml up

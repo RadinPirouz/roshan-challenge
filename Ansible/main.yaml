@@ -1,0 +1,7 @@
+---
+- name: Setup Web App
+  hosts: all
+  become: yes
+  roles:
+    - Install-Docker
+    - Setup-App
