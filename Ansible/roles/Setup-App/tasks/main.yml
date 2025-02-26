@@ -16,8 +16,8 @@
     - main.py
 - name: Build Web App Image
   ansible.builtin.shell:
-    cmd: docker build -t roshan-task:v1 -f {{ project_dir }}/Dockerfile .
+    cmd: docker build -t roshan-task:v1 -f {{ project_dir }}/Dockerfile {{ project_dir}}
 
 - name: Run Web App With Docker Compose
   ansible.builtin.shell:
-    cmd: docker compose --file {{ project_dir }}/docker-compose.yaml up
+    cmd: docker compose --file {{ project_dir }}/docker-compose.yaml up -d 

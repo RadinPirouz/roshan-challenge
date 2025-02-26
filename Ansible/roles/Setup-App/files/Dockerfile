@@ -8,7 +8,7 @@ RUN mkdir /webapp
 
 WORKDIR /webapp
 
-COPY Python/main.py ./
+COPY ./main.py ./
 
 EXPOSE 5000
 
